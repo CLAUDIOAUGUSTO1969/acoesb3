@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotações da B3 e Índices Internacionais</title>
+    <script>
+        async function buscarAcoes() {
+            try {
+                const url = `https://api.twelvedata.com/time_series?symbol=PETR4.SA,VALE3.SA,ITUB4.SA,MGLU3.SA,CSAN3.SA&interval=1min&apikey=07f07db6cdb442d286403d8135c55da6`;
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                // Verificando o formato da resposta
+                console.log(data);
+
+                if (data.status === "ok") {
+                    let tabela = '<tr><th>Ativo</th><th>Preço Atual</th><th>Variação (%)</th></tr>';
+                    data.data.forEach(acao => {
+                        tabela += `<tr>
+                            <td>${acao.symbol}</td>
+                            <td>R$ ${parseFloat(acao.close).toFixed(2)}</td>
+                            <td style="color: ${acao.change_percent >= 0 ? 'green' : 'red'};">
+                                ${acao.change_percent.toFixed(2)}%
+                            </td>
+                        </tr>`;
+                    });
+                    document.getElementById('acoes').innerHTML = tabela;
+                } else {
+                    console.error("Erro no retorno da API:", data.message);
+                    document.getElementById('acoes').innerHTML = `<tr><td colspan="3">Erro ao carregar dados. Tente novamente mais tarde.</td></tr>`;
+                }
+            } catch (error) {
+                console.error('Erro ao buscar cotações:', error);
+                document.getElementById('acoes').innerHTML = `<tr><td colspan="3">Erro ao carregar dados. Tente novamente mais tarde.</td></tr>`;
+            }
+        }
+
+        setInterval(buscarAcoes, 5000); // Atualiza a cada 5 segundos
+        window.onload = buscarAcoes;
+    </script>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        table { margin: auto; border-collapse: collapse; width: 50%; }
+        th, td { border: 1px solid black; padding: 8px; }
+    </style>
+</head>
+<body>
+    <h1>Cotações da B3 e Índices Internacionais</h1>
+    <table id="acoes"></table>
+</body>
+</html>
