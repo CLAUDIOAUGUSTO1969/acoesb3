@@ -19,22 +19,32 @@ Este é um projeto web que exibe cotações de ativos da B3, fundos imobiliário
 ## Como Usar
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/seu-repositorio.git
-   ```
-2. Abra o arquivo `index.html` no navegador.
-3. Aguarde alguns segundos para carregar as cotações.
+   git clone https://github.com/claudioaugusto1969/seu-repositorio.git
 
-## Exemplo de Uso
+
+   ATENÇÃO: Para que o projeto funcione corretamente, você precisará de um token da API. O token deve ser inserido no código fonte, no local indicado no arquivo index.html. O token utilizado é o seguinte:
+
+js
+Copiar
+Editar
+"X-RapidAPI-Key": "d95afb90a3mshf7152d8bea8a89ap1b4dafjsne497dd3e3b41"
+Exemplo de Uso
 O sistema exibe uma tabela contendo:
-- Nome do ativo
-- Preço atual
-- Variação percentual com cores indicativas (verde para alta e vermelho para queda)
 
-## Contribuição
+Nome do ativo
+
+Preço atual
+
+Variação percentual com cores indicativas (verde para alta e vermelho para queda)
+
+Contribuição
 Se quiser contribuir, sinta-se à vontade para fazer um fork do repositório e enviar um Pull Request com melhorias ou correções.
 
-## Autor
-Desenvolvido por **Claudio Augusto Pereira**.
+Autor
+Desenvolvido por Claudio Augusto Pereira. Você pode me encontrar nas redes sociais:
+
+GitHub: claudioaugusto1969
+
+LinkedIn: Claudio Augusto
 
 Se gostou do projeto, não esqueça de deixar uma estrela no GitHub! ⭐
-
